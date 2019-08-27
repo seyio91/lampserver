@@ -1,0 +1,25 @@
+---
+# tasks file for apache
+ - name: Install Git Client
+   yum:
+     name: git
+     state: present
+   tags: [Git]
+
+ - name: Install Apache Server
+   yum:
+     name: httpd
+     state: present
+   tags: httpd
+
+ - name: install packages
+   yum: name={{ item }} update_cache=yes state=latest
+   with_items:
+     - mcrypt
+     - php5-cli
+     - php5-curl
+     - php5-fpm
+     - php5-intl
+     - php5-json
+     - php5-mcrypt
+     - php
