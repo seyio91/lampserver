@@ -1,36 +1,35 @@
 ---
 # tasks file for apache
- - name: Setting File ownership for Server Dir
-   file:
-     path: /var/www/html
-     owner: vagrant
-     group: vagrant
-     recurse: yes
-   tags: [httpd]
+- name: Setting File ownership for Server Dir
+  file:
+    path: /var/www/html
+    # owner: vagrant
+    # group: vagrant
+    recurse: yes
+  tags: [httpd]
 
- - name: Enable mod_write for Apache
-   lineinfile:
-     path: /etc/httpd/conf.modules.d/00-base.conf
-     regexp: '^.*rewrite_module.*$'
-     line: 'LoadModule rewrite_module modules/mod_rewrite.so'
-     state: present
-   tags: [httpd]
+- name: Enable mod_write for Apache
+  lineinfile:
+    path: /etc/httpd/conf.modules.d/00-base.conf
+    regexp: '^.*rewrite_module.*$'
+    line: 'LoadModule rewrite_module modules/mod_rewrite.so'
+    state: present
+  tags: [httpd]
 
- - name: Copy Htaccess conf Template
-   template: 
-     src: htaccess.j2
-     dest: /var/www/html/.htaccess
-     owner: vagrant
-     group: vagrant
+- name: Copy Htaccess conf Template
+  template:
+    src: htaccess.j2
+    dest: /var/www/html/.htaccess
+    # owner: vagrant
+    # group: vagrant
 
- - name: Set httpd conf to use htaccess
-   lineinfile:
-     path: /etc/httpd/conf/httpd.conf
-     insertafter: '</Directory>'
-     line: |
-       <Directory "/var/www/html">
-         AllowOverride all
-       </Directory>
-   notify:
-     - restart Apache
- 
+- name: Set httpd conf to use htaccess
+  lineinfile:
+    path: /etc/httpd/conf/httpd.conf
+    insertafter: '</Directory>'
+    line: |
+      <Directory "/var/www/html">
+        AllowOverride all
+      </Directory>
+  notify:
+    - restart Apache

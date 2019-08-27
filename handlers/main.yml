@@ -1,6 +1,7 @@
 ---
 # handlers file for apache
- - name: restart Apache
-   service: 
-     name: httpd
-     state: restarted
+- name: restart Apache
+  service:
+    name: httpd
+    state: restarted
+    enabled: yes
