@@ -18,7 +18,8 @@ provisioner:
   name: ansible
   log: True
   env:
-    ANSIBLE_ROLES_PATH: /home/vagrant/python2-venv/roles/ansible-files/roles/
+    ANSIBLE_ROLES_PATH: ../../../
+    # ANSIBLE_ROLES_PATH: /home/vagrant/python2-venv/roles/ansible-files/roles/
   lint:
     name: ansible-lint
 verifier:
@@ -29,13 +30,13 @@ scenario:
   name: default
   test_sequence:
     # - lint
-    - destroy
+     - destroy
     # - dependency
     - syntax
     - create
     # - prepare
     - converge
-    - idempotence
+    # - idempotence
     # - side_effect
     - verify
     - destroy
