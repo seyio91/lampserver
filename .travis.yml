@@ -1,0 +1,18 @@
+---
+language: python
+python:
+  - "2.7"
+  - "3.6"
+services:
+  - docker
+install:
+  - pip install molecule docker
+script:
+  - molecule --version
+  - ansible --version
+  - molecule test
+after_success:
+  - ./travis_merge_script.sh
+env:
+  global:
+    secure: Dm1ZKaUloQdsGnvYxj662UZbuXvk9HP3l/VIJ3H8lDZoTzpwMEqv4QoGLH2jtq0yIRnvKIkCAMusG8MnJhq6aBIM+HPsxOMuyKS8voikhHwE/hsNdRDpTZUM1yf8cgpTnpycmHYXcTNhpHORK9e++zKKN2Qytyuf3X5k2ZE4Xh8CObzzN/SO6GC+t0Gslqxai5guMKIocDoRzcN0cFxLabUNbfuasRezoyCQlCS2U/7PforSlKIyH+Z0ZmQ7+eYNxrvOKOV0zfIhHS4eCqo+idb3VhWSoY2hw/bG/Jt924jvr++DU91TkjmflWsd7V00JfHIrVFksc/LIIWfyomr+Afljf2Ssz1yTBRSZuArUjP0v96SbBT3R3NWFYHbzEOoUCfsdswmeHrZn2wnwaoNEKbAUpg0R1hB6xUBisJlN5UivXdQNw4r7hJ0vWDuwOHWhTP3zQY+RX678d3I6MYnaJ/Om0qS6Jko5pvf+FkBtMxDIExCusC9W1MaAwAzRkmFpxkdkkGMUFw4iC8I1WFARq41wE+MApCXOTDyWKHcd28W4XurikLydRzzaXab4HAz8KVBCn+Res5eCfNTwz4+EOL9f/8a2sXrMsAg/bh/ojkNJXgSX/qUOTAmM0d8VTitds8QjiQHztAWY5ZqyPf+P3SMvyZPlLlx3hJh5PbYlss=
